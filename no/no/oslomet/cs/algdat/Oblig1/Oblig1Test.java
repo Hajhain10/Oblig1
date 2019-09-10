@@ -1,5 +1,6 @@
 package no.oslomet.cs.algdat.Oblig1;
 
+import static no.oslomet.cs.algdat.Oblig1.Oblig1.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 ////// Testprogram for Oblig 1 - 2019 ////////////////////////
@@ -33,7 +34,7 @@ public class Oblig1Test {
         boolean unntak = false;
         int[] tom = {};
         try {
-            Oblig1.maks(tom);  // kaller maks-metoden
+            maks(tom);  // kaller maks-metoden
         } catch (Exception e) {
             unntak = true;
             if (!(e instanceof java.util.NoSuchElementException)) {
@@ -51,8 +52,8 @@ public class Oblig1Test {
         int[] b = {5, 2, 8, 4, 7, 6};
         int[] c = {5, 4, 3, 2, 1};
         int[] d = {1, 2, 3, 4, 5};
-        if (Oblig1.maks(a) != 3 || Oblig1.maks(b) != 8 ||
-                Oblig1.maks(c) != 5 || Oblig1.maks(d) != 5) {
+        if ((maks(a) != 3) || (maks(b) != 8) ||
+                (no.oslomet.cs.algdat.Oblig1.Oblig1.maks(c) != 5) || (no.oslomet.cs.algdat.Oblig1.Oblig1.maks(d) != 5)) {
             System.out.println("Oppgave 1: c) Maks-metoden: Feil resultat!");
             antallFeil++;
         }
@@ -60,7 +61,7 @@ public class Oblig1Test {
         int[] e = {1, 4, 3, 7, 6, 5, 10, 2, 9, 8};
         int[] f = {1, 3, 4, 6, 5, 7, 2, 9, 8, 10};
 
-        Oblig1.maks(e);
+        no.oslomet.cs.algdat.Oblig1.Oblig1.maks(e);
         if (!Arrays.equals(e, f)) {
             System.out.println("Oppgave 1: d) Maks-metoden: feil i ombyttingene!");
             antallFeil++;
