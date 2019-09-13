@@ -53,7 +53,7 @@ public class Oblig1Test {
         int[] c = {5, 4, 3, 2, 1};
         int[] d = {1, 2, 3, 4, 5};
         if ((maks(a) != 3) || (maks(b) != 8) ||
-                (no.oslomet.cs.algdat.Oblig1.Oblig1.maks(c) != 5) || (no.oslomet.cs.algdat.Oblig1.Oblig1.maks(d) != 5)) {
+                (Oblig1.maks(c) != 5) || (Oblig1.maks(d) != 5)) {
             System.out.println("Oppgave 1: c) Maks-metoden: Feil resultat!");
             antallFeil++;
         }
@@ -61,7 +61,7 @@ public class Oblig1Test {
         int[] e = {1, 4, 3, 7, 6, 5, 10, 2, 9, 8};
         int[] f = {1, 3, 4, 6, 5, 7, 2, 9, 8, 10};
 
-        no.oslomet.cs.algdat.Oblig1.Oblig1.maks(e);
+        Oblig1.maks(e);
         if (!Arrays.equals(e, f)) {
             System.out.println("Oppgave 1: d) Maks-metoden: feil i ombyttingene!");
             antallFeil++;
