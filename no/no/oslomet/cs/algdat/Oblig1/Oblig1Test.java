@@ -680,7 +680,7 @@ public class Oblig1Test {
 
             if (!Arrays.equals(b, d)) {
                 System.out.println
-                        ("Oppgave 8: g) Feil i indekstabellen for a = " + Arrays.toString(a));
+                        ("Oppgave +8: g) Feil i indekstabellen for a = " + Arrays.toString(a));
 
                 antallFeil++;
                 break;

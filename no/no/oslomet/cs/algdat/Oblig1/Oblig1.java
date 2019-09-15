@@ -4,11 +4,13 @@ package no.oslomet.cs.algdat.Oblig1;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
 public class Oblig1 {
+
     private Oblig1() {
     }
 
@@ -105,20 +107,70 @@ public class Oblig1 {
 
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
-        throw new NotImplementedException();
+
+        //throw new NotImplementedException();
+        int partall = 0;
+        int oddetall = 0;
+        //løkke for å sjekke om d kun r enten partall eller oddetall
+        for(int i = 0; i<a.length; i++){
+            if(a[i]%2==0){
+                partall++;
+            }else
+                oddetall++;
+        }
+        //hvis det kun er en av delene så sorterer vi hele llsta
+        if(oddetall == 0 || partall == 0){
+           //todo fikse algoritme for å sortere
+            return;
+        }
+
+        int left = 0;
+        int right = a.length-1;
+        //får oddetall på venstre side og partall på høyre side.
+        // vi kan så sortere dem hver for seg
+        while(left < right) {
+            while (a[right] % 2 == 0) {
+                right--;
+
+            }
+            while (a[left] % 2 != 0) {
+                left++;
+
+            }
+            if(left <= right){
+                int temp = a[left];
+                a[left] = a[right];
+                a[right] = temp;
+            }
+            //System.out.print(left + " " + right+"    ");
+
+        }
+        //vet ikke helt om vi bør bruke quicksort eller bare bruke selection sort
+        // (quicksort) koden står i kompediet
+        //todo fikse algoritme for å sortere
+
     }
 
     ///// Oppgave 5 //////////////////////////////////////
     public static void rotasjon(char[] a) {
 
         //throw new NotImplementedException();
-        char siste = a[a.length-1];
-        for(int i = a.length-1; i>0; i--){
-            a[i]=a[i-1];
+
+        //hvis vi ikke får inn noe så skal løkken avsluttes
+        if(a.length == 0){
+            return;
+        }else {
+            //vi tar vare på det siste tallet ettersom at dette blir glemt i
+            //i = a.lemngth -1. denne verdien skal være i a[0] uansett situasjon
+            // derfor setter vi det til slutt.
+            char siste = a[a.length - 1];
+            for (int i = a.length - 1; i > 0; i--) {
+                a[i] = a[i - 1];
+
+            }
+            a[0] = siste;
 
         }
-        a[0] = siste;
-
 
     }
 
@@ -130,6 +182,9 @@ public class Oblig1 {
             antall_ganger = k+a.length;
         }
 
+        //bruker d samme som i oppgave 5 bare at vi gjør dette flere ganger
+        // kommer ikke på noen bedre algoritme aakkurat nå. denne gir 16 sek(altfor lang tid og må endres)
+        // todo ^ denne må kun være midlertilig
         for (int antall = 0; antall < antall_ganger; antall++) {
 
             char temp = a[a.length-1];
@@ -147,22 +202,27 @@ public class Oblig1 {
 
         throw new NotImplementedException();
 
+
     }
 
     /// 7b)
     public static String flett(String... s) {
         throw new NotImplementedException();
-    }
+
+        }
+
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
         throw new NotImplementedException();
-    }
+
+        }
 
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
         throw new NotImplementedException();
+
     }
 
     ///// Oppgave 10 //////////////////////////////////////
@@ -171,7 +231,42 @@ public class Oblig1 {
     }
 
     public static boolean inneholdt(String a, String b) {
-        throw new NotImplementedException();
+       // throw new NotImplementedException();
+
+        // dersom a får inn en tom streng så vil a være i b.
+        if(a.equals("")){
+            return true;
+        }
+        // en mengde som ikke er tom(a) vil ikke være i en tom mengde(b).
+        if(!a.equals("") && b.equals("")){
+            return false;
+        }
+        // j = en hjelpevariabel
+        int j = 0;
+        char[] char1 = a.toCharArray();
+        char[] char2 = b.toCharArray();
+
+        Arrays.sort(char1);
+        Arrays.sort(char2);
+
+
+        for (int i = 0; i < char2.length; i++){
+            //dersom char[j]==char[i] vil den ene bokstaven være lik
+            // vi fjerner denne bokstaven fra b slik at den ikke blit talt opp igjen/ flere ganger
+            // i tillegg til dette går vi til neste bokstav i streng a med hjelpervariabelen j++
+            if(char1[j]==char2[i]){
+                j++;
+                //dersom j == a.length() vil d si at alle bokstavene er funnnet i b
+                //som medfører at a er inneholdt i b
+                if(a.length() == j){
+                    return true;
+                }
+            }
+
+        }
+
+        //standardverdien er false; hvis den er true kommer den ikke hit;
+        return false;
     }
 
 }  // Oblig1
