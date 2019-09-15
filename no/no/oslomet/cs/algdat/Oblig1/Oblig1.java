@@ -11,6 +11,113 @@ import java.util.NoSuchElementException;
 
 public class Oblig1 {
 
+    public static void sorter(int[] a, int fra, int til) {
+        //metode for selection sort
+        if (fra < til) {
+            //stoppeverdien er fra < til
+            int minste = fra;
+            for (int i = fra; i < til; i++) {
+                //finner indeksen til den minste for å sette den til fra plassen
+                if (a[minste] > a[i]) {
+                    minste = i;
+                }
+            }
+            //bytter fra til å bli den minste verdien
+            int temp = a[fra];
+            a[fra] = a[minste];
+            a[minste] = temp;
+
+            //rekursjon, endrer fra til fra +1
+            if (fra < til) {
+                fra++;
+                sorter(a, fra, til);
+            }
+        }
+    }
+
+    public static void quickSort(int[] array, int venstre, int hoyre) {
+
+        //midtverdi
+        int midt = (venstre + hoyre) / 2;
+        //verdien til midten av arrayet
+        int pivot = array[midt];
+
+        int v = venstre;
+        int h = hoyre;
+
+        while (v <= h) {
+
+            while (array[v] < pivot) {
+                // finner indeksen som er høyere enn midtverdi
+                v++;
+            }
+
+            while (array[h] > pivot) {
+                // finner indeksen som er lavere enn midtverdi
+                h--;
+            }
+
+            if (v <= h) {
+                // bytter om verdiene
+                int midlertidig = array[v];
+                array[v] = array[h];
+                array[h] = midlertidig;
+                v++;
+                h--;
+            }
+        }
+
+        //rekursjon
+        if (venstre < h) {
+            quickSort(array, venstre, h);
+        }
+        if (hoyre > v) {
+            quickSort(array, v, hoyre);
+        }
+
+    }
+
+    //Denne tar inn char istedenfor String, samme konsept som over
+    public static void quickSort(char[] array, int venstre, int hoyre) {
+
+        int midt = (venstre + hoyre) / 2;
+        int pivot = array[midt];
+
+        int lav = venstre;
+        int hoy = hoyre;
+
+        while (lav <= hoy) {
+
+            while (array[lav] < pivot) {
+
+                lav++;
+            }
+
+            while (array[hoy] > pivot) {
+
+                hoy--;
+            }
+
+            if (lav <= hoy) {
+
+                char midlertidig = array[lav];
+                array[lav] = array[hoy];
+                array[hoy] = midlertidig;
+                lav++;
+                hoy--;
+            }
+        }
+
+        if (venstre < hoy) {
+            quickSort(array, venstre, hoy);
+        }
+        if (hoyre > lav) {
+            quickSort(array, lav, hoyre);
+        }
+
+    }
+
+
     private Oblig1() {
     }
 
@@ -109,6 +216,9 @@ public class Oblig1 {
     public static void delsortering(int[] a) {
 
         //throw new NotImplementedException();
+        if(a.length==0){
+            return;
+        }
         int partall = 0;
         int oddetall = 0;
         //løkke for å sjekke om d kun r enten partall eller oddetall
@@ -120,7 +230,7 @@ public class Oblig1 {
         }
         //hvis det kun er en av delene så sorterer vi hele llsta
         if(oddetall == 0 || partall == 0){
-           //todo fikse algoritme for å sortere
+            quickSort(a,0,a.length-1);
             return;
         }
 
@@ -142,12 +252,11 @@ public class Oblig1 {
                 a[left] = a[right];
                 a[right] = temp;
             }
-            //System.out.print(left + " " + right+"    ");
 
         }
-        //vet ikke helt om vi bør bruke quicksort eller bare bruke selection sort
-        // (quicksort) koden står i kompediet
-        //todo fikse algoritme for å sortere
+
+        quickSort(a,0,right);
+        quickSort(a,left,a.length-1);
 
     }
 
@@ -161,7 +270,7 @@ public class Oblig1 {
             return;
         }else {
             //vi tar vare på det siste tallet ettersom at dette blir glemt i
-            //i = a.lemngth -1. denne verdien skal være i a[0] uansett situasjon
+            //i = a.length -1. denne verdien skal være i a[0] uansett situasjon
             // derfor setter vi det til slutt.
             char siste = a[a.length - 1];
             for (int i = a.length - 1; i > 0; i--) {
@@ -177,14 +286,14 @@ public class Oblig1 {
     ///// Oppgave 6 //////////////////////////////////////
     public static void rotasjon(char[] a, int k) {
         //throw new NotImplementedException();
-        int antall_ganger = k;
+        int antall_ganger = k%a.length;
         if(k<0){
             antall_ganger = k+a.length;
         }
 
+
         //bruker d samme som i oppgave 5 bare at vi gjør dette flere ganger
         // kommer ikke på noen bedre algoritme aakkurat nå. denne gir 16 sek(altfor lang tid og må endres)
-        // todo ^ denne må kun være midlertilig
         for (int antall = 0; antall < antall_ganger; antall++) {
 
             char temp = a[a.length-1];
@@ -199,11 +308,11 @@ public class Oblig1 {
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-
         throw new NotImplementedException();
 
+        }
 
-    }
+
 
     /// 7b)
     public static String flett(String... s) {
@@ -214,14 +323,82 @@ public class Oblig1 {
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        throw new NotImplementedException();
-
+       // throw new NotImplementedException();
+        if (a.length == 0) {
+            return a;
         }
+        ArrayList<Integer> liste = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
+            liste.add(a[i]);
+        }
+
+        int b[] = a.clone();
+        sorter(b,0,b.length);
+
+        int[] kopi = new int[a.length];
+        kopi[0] = liste.indexOf(b[0]);
+        int storsteTall = b[a.length - 1] + 1;
+
+        for (int i = 1; i < kopi.length; i++) {
+
+            if (b[i] == b[i - 1]) {
+                liste.set(liste.indexOf(b[i]), storsteTall);
+                kopi[i] = liste.indexOf(b[i]);
+
+            } else {
+                kopi[i] = liste.indexOf(b[i]);
+            }
+        }
+        return kopi;
+    }
 
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+
+        int n = a.length;
+        if (n < 3) {
+            throw new NoSuchElementException("Må ha minst tre tall");
+        }
+
+        int[] sorter = {a[0],a[1],a[2]};
+        int[] sortert = indekssortering(sorter);
+
+        int m = sortert[0];
+        int nm = sortert[1];
+        int tm = sortert[2];
+
+        int minstverdi = a[m];
+        int nestminstsverdi = a[nm];
+        int tredjminstverdi = a[tm];
+
+        for (int i = 3; i < n; i++) {
+            if (a[i] < tredjminstverdi) {
+                if (a[i] < minstverdi) {
+                    tm = nm;
+                    tredjminstverdi = nestminstsverdi;
+
+                    nm = m;
+                    nestminstsverdi = minstverdi;
+
+                    m = i;
+                    minstverdi = a[m];
+
+                } else if (a[i] < nestminstsverdi) {
+                    tm = nm;
+                    tredjminstverdi = nestminstsverdi;
+
+                    nm = i;
+                    nestminstsverdi = a[nm];
+                } else {
+                    tm = i;
+                    tredjminstverdi = a[tm];
+                }
+            }
+
+        }
+        return new int[]{m, nm, tm};
 
     }
 
@@ -232,7 +409,6 @@ public class Oblig1 {
 
     public static boolean inneholdt(String a, String b) {
        // throw new NotImplementedException();
-
         // dersom a får inn en tom streng så vil a være i b.
         if(a.equals("")){
             return true;
@@ -246,8 +422,8 @@ public class Oblig1 {
         char[] char1 = a.toCharArray();
         char[] char2 = b.toCharArray();
 
-        Arrays.sort(char1);
-        Arrays.sort(char2);
+        quickSort(char1,0,a.length()-1);
+        quickSort(char2,0,b.length()-1);
 
 
         for (int i = 0; i < char2.length; i++){
