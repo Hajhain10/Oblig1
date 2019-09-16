@@ -288,31 +288,13 @@ public class Oblig1 {
 
             }
             a[0] = siste;
-
         }
-
     }
 
     ///// Oppgave 6 //////////////////////////////////////
     public static void rotasjon(char[] a, int k) {
-        //throw new NotImplementedException();
-        int antall_ganger = k%a.length;
-        if(k<0){
-            antall_ganger = k+a.length;
-        }
+        throw new NotImplementedException();
 
-
-        //bruker d samme som i oppgave 5 bare at vi gjør dette flere ganger
-        // kommer ikke på noen bedre algoritme aakkurat nå. denne gir 16 sek(altfor lang tid og må endres)
-        for (int antall = 0; antall < antall_ganger; antall++) {
-
-            char temp = a[a.length-1];
-            for (int i = a.length-1; i > 0; i--) {
-
-                a[i] = a[i - 1];
-            }
-            a[0] = temp;
-        }
     }
 
     ///// Oppgave 7 //////////////////////////////////////
@@ -385,16 +367,13 @@ public class Oblig1 {
                     svar[k]=s[j].charAt(i);
                     k++;
                 }
-
             }
-
         }
 
         String ut = "";
         for(int i = 0; i < svar.length; i++){
             ut+=svar[i];
         }
-
         return ut;
         }
 
@@ -402,23 +381,31 @@ public class Oblig1 {
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
        // throw new NotImplementedException();
+        //dersom lengden er 0
         if (a.length == 0) {
             return a;
         }
+        //endre array til arraylist ettersom at dette er enklere å jobbe med
         ArrayList<Integer> liste = new ArrayList<>();
         for (int i = 0; i < a.length; i++) {
             liste.add(a[i]);
         }
 
+        //vi skal finne indeksene i b. kan ikke bruke a siden den ikke skal endres (Oppgavetekst)
         int b[] = a.clone();
+        //selection sort
         sorter(b,0,b.length);
 
+        //lager en ny array som skal være indekstabellen
         int[] kopi = new int[a.length];
         kopi[0] = liste.indexOf(b[0]);
+        //dersom vi har duplikate tall vi vi endre verdiene til tallet som er brukt
         int storsteTall = b[a.length - 1] + 1;
 
         for (int i = 1; i < kopi.length; i++) {
-
+            //dersom vi finner d samme tallet endrer vi tallet som er brukt
+            //slik at vi kan få tallet som ikke er brukt. feks om vi har 5,1,0,5 vil vi få
+            // indeks 0 i første omgang og indeks 4 i andre
             if (b[i] == b[i - 1]) {
                 liste.set(liste.indexOf(b[i]), storsteTall);
                 kopi[i] = liste.indexOf(b[i]);
@@ -434,15 +421,16 @@ public class Oblig1 {
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
         //throw new NotImplementedException();
-
+        //sjekker at vi har tre tall minst
         int n = a.length;
         if (n < 3) {
             throw new NoSuchElementException("Må ha minst tre tall");
         }
-
+        //sorterer kun de tre første tallene ved hjelp av oppgaven over
         int[] sorter = {a[0],a[1],a[2]};
         int[] sortert = indekssortering(sorter);
 
+        //deklarer verdien til den minste, anest minste og tredj minste
         int m = sortert[0];
         int nm = sortert[1];
         int tm = sortert[2];
@@ -452,7 +440,9 @@ public class Oblig1 {
         int tredjminstverdi = a[tm];
 
         for (int i = 3; i < n; i++) {
+            //dersom tallet er mindre enn tredj minste tallet vil denne være en av tre minste tallene
             if (a[i] < tredjminstverdi) {
+                //dersom a[i] er minsre enn minsteverdi vil dette bli det minste tallet
                 if (a[i] < minstverdi) {
                     tm = nm;
                     tredjminstverdi = nestminstsverdi;
@@ -463,12 +453,15 @@ public class Oblig1 {
                     m = i;
                     minstverdi = a[m];
 
+                    //dersom den er større enn minste verdi vil den bli nest minste verdi
+                    //og nest minste verdi bli til den tredj minste.
                 } else if (a[i] < nestminstsverdi) {
                     tm = nm;
                     tredjminstverdi = nestminstsverdi;
 
                     nm = i;
                     nestminstsverdi = a[nm];
+                    //hvis ingen av de over treffer inn bytter vil det si at den er den tredjminste verdien
                 } else {
                     tm = i;
                     tredjminstverdi = a[tm];
