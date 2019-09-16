@@ -129,7 +129,7 @@ public class Oblig1 {
         }
         //looper igjennom for å endre plass
         for(int i = 1; i < a.length; i++){
-
+            //bobler opp den største verdien
             if(a[i-1]>a[i]){
                 int temp = a[i];
                 a[i]=a[i-1];
@@ -137,20 +137,24 @@ public class Oblig1 {
             }
 
         }
+        //etter at vi har bobla vil den største verdien ligge i det siste elementet i arrayen
         return a[a.length-1];
 
     }
 
     public static int ombyttinger(int[] a) {
         //throw new NotImplementedException();
+        //dersom vi ikke får inn noe kastes en exception
         if(a.length <= 0){
             throw new NoSuchElementException("Arrayet kan ikke inneholde 0 tall");
         }
 
+        //denne teller antall ombyttinger
         int antall_byttinger = 0;
         //looper igjennom for å telle inversjoner
         for(int i = 1; i < a.length; i++){
-
+            //bruker samme konsept som i oppgaven over.
+            //vi øker antall ombyttinger hver gang vi kommer inn i if setningen
             if(a[i-1]>a[i]){
                 antall_byttinger++;
                 int temp = a[i];
@@ -159,9 +163,7 @@ public class Oblig1 {
             }
 
         }
-        //husk å fjerne denne
-        System.out.println(Arrays.toString(a));
-        //returnerer antall iversjoner. v ser på bytting av et par = 1 ombytting
+        //returnerer antall iversjoner. vi ser på bytting av et par = 1 ombytting
         return antall_byttinger;
 
     }
@@ -176,14 +178,16 @@ public class Oblig1 {
         int antall = 1;
         //går igjennom arrayet som vi har
         for(int i = 1; i< a.length; i++){
-
+            //vi trenger kun å sjekke med tallet foran for å se om alt er sortert
             int temp = a[i-1];
             int temp1 = a[i];
+            //dersom det ikke er sortert kastes en exception
             if(temp>temp1){
                 throw new IllegalStateException("Input arrayet er ikke sortert");
             }
+            //dersom a[i] og a[i-1] er forskjellig vet vi at vi har fått inn et nytt unikt tall.
+            //derfor øker vi antall
             else if(temp!=temp1){
-                System.out.println(temp + " " + temp1);
                 antall++;
             }
 
@@ -195,7 +199,9 @@ public class Oblig1 {
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
         //throw new NotImplementedException();
+        //hjelpevariablen for å telle antall ulike
         int unike = 0;
+
 
         for(int i= 0; i < a.length; i++){
             int pluss = 0;
@@ -239,14 +245,17 @@ public class Oblig1 {
         //får oddetall på venstre side og partall på høyre side.
         // vi kan så sortere dem hver for seg
         while(left < right) {
+            //dersom %2=0 vet vi at det er partall
             while (a[right] % 2 == 0) {
                 right--;
 
             }
+            //dersom %2!=0 så er det et oddetall
             while (a[left] % 2 != 0) {
                 left++;
 
             }
+            //bytter om verdiene for å få oddetall til venstre og partall til høyre
             if(left <= right){
                 int temp = a[left];
                 a[left] = a[right];
@@ -254,7 +263,8 @@ public class Oblig1 {
             }
 
         }
-
+        //bruker kvikksortering for å sortere partall og oddetall seperat.
+        //kvikksort koden ligger øverst i dette dokumentet
         quickSort(a,0,right);
         quickSort(a,left,a.length-1);
 
@@ -308,16 +318,84 @@ public class Oblig1 {
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
 
+        //splitter strengene vi får med "";
+        //ABC blir til A,B,C
+        String[] String_s = s.split("");
+        String[] String_t = t.split("");
+
+        //sluttordet sin lengde må være begge strengene sin lengde til sammen
+        String[] flettet = new String[String_s.length + String_t.length];
+
+        // hjelpevaribler
+        // k brukes til å fylle flettet
+        // j og i skal gå igjennom s og t
+        int i =0; int j = 0; int k = 0;
+
+        //denne gjøres til en av charene går tom for bokstaver
+        // tar først en bokstav fra s så en fra t....
+        while( i < String_s.length && j < String_t.length){
+            flettet[k++] = String_s[i++];
+            flettet[k++] = String_t[j++];
+        }
+        //kun en av disse while løkkene vil kjøre
+        // den skal kunne legge til resten av bokstavene som er igjen fra enten s eller t
+        while(i < String_s.length){
+            flettet[k++] = String_s[i++];
+        }
+        while(j < String_t.length){
+            flettet[k++] = String_t[j++];
+        }
+
+        // skriver ut flettet
+        String ut ="";
+        for(int l =0; l<flettet.length; l++){
+            ut+=flettet[l];
+        }
+
+        return ut;
         }
 
 
 
     /// 7b)
     public static String flett(String... s) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        if(s.length==0){
+            return "";
+        }
+        // for å finne lengden til sluttordet må vi legge sammen alle
+        //lengdene til s
+        int lengde = 0;
+        for (int i = 0; i < s.length; i++) {
+            lengde = lengde + s[i].length();
+        }
+        char svar[] = new char[lengde];
+        //k bestemmer hvor i svar bokstaven legges
+        int k = 0;
+        //i er posisjonen den skal hente bokstaven fra
+        for(int i = 0; i<svar.length; i++){
+            //j velger hvilket ord bokstaven skal hentes fra
+            // feks s[1] vil være det andre ordet som vi fikk inn som parameter
+            for (int j = 0; j < s.length; j++) {
+                //dersom s[j],length() > i slår inn vet vi at ordet har en bokstav i charAt(i)
+                //og kan hente den. hvis den ikke slår inn vil det si at ordet har gått tom for bokstaver
+                if(s[j].length()>i){
+                    svar[k]=s[j].charAt(i);
+                    k++;
+                }
 
+            }
+
+        }
+
+        String ut = "";
+        for(int i = 0; i < svar.length; i++){
+            ut+=svar[i];
+        }
+
+        return ut;
         }
 
 
