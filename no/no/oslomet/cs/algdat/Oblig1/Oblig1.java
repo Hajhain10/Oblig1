@@ -302,7 +302,7 @@ public class Oblig1 {
         }
     }
 
-    ///// Oppgave 6 //////////////////////////////////////
+    ///// Oppgave 6 ///////////////////////////////////////
     public static void rotasjon(char[] a, int k) {
         //throw new NotImplementedException();
         //kan ikke operere med en tom mengde
