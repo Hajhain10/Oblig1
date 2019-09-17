@@ -549,7 +549,7 @@ public class Oblig1 {
         }
 
         //standardverdien er false; hvis den er true kommer den ikke hit;
-        return false;
+        return false;//h
     }
 
 }  // Oblig1
