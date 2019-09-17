@@ -20,8 +20,8 @@ class Oblig1UnitTest {
 
     @org.junit.jupiter.api.Test
     void ombyttinger() {
-        int[] verste = {9,8,7,6,5,4,3,2,1};
-        assertEquals(8, Oblig1.ombyttinger(verste), "Implementer ombyttinger og denne testen");
+        int[] gjennomsnitt = Oblig1Test.randPerm(10);
+        assertEquals(8, Oblig1.ombyttinger(gjennomsnitt), "Implementer ombyttinger og denne testen");
     }
 
 

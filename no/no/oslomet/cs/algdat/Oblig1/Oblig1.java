@@ -309,17 +309,24 @@ public class Oblig1 {
         if(a.length == 0){
             return;
         }
+        //dersom k er større enn a.length vil denne redusere k
         k = k%a.length;
         if(k<0){
+            //vil alltid ha k som en positiv verdi
             k = k+ a.length;
         }
+        //bruker samme konsept som mergesort
+        //kopierer slutt delen til array, flytter det opprinnelige arrayet fram
+        //legger til kopi arrayet til slutt
         char[] kopi = new char[k];
         int j = a.length-k;
+        //legger til de siste k verdiene inn i kopi
         for (int i = 0; i < k; i++) {
             kopi[i] = a[j];
             j++;
         }
         char temp;
+        //flytter bokstavene k ganger frem
         for (int i = a.length - 1; i > 0; i--) {
             if (i - k >= 0) {
                 temp = a[i];
@@ -327,7 +334,7 @@ public class Oblig1 {
                 a[i - k] = temp;
             }
         }
-
+        //legger til bokstavene fra kopi arrayet fremst i listen
         for(int i = 0; i < k; i++){
             a[i] = kopi[i];
         }
@@ -406,6 +413,7 @@ public class Oblig1 {
             }
         }
 
+        //Printer
         String ut = "";
         for(int i = 0; i < svar.length; i++){
             ut+=svar[i];
@@ -421,36 +429,35 @@ public class Oblig1 {
         if (a.length == 0) {
             return a;
         }
-        //endre array til arraylist ettersom at dette er enklere a jobbe med
-        ArrayList<Integer> liste = new ArrayList<>();
-        for (int i = 0; i < a.length; i++) {
-            liste.add(a[i]);
-        }
 
-        //vi skal finne indeksene i b. kan ikke bruke a siden den ikke skal endres (Oppgavetekst)
-        int b[] = a.clone();
-        //selection sort
-        sorter(b,0,b.length);
-
-        //lager en ny array som skal vaere indekstabellen
+        //dupliserer arrayet a
         int[] kopi = new int[a.length];
-        kopi[0] = liste.indexOf(b[0]);
-        //dersom vi har duplikate tall vi vi endre verdiene til tallet som er brukt
-        int storsteTall = b[a.length - 1] + 1;
-
-        for (int i = 1; i < kopi.length; i++) {
-            //dersom vi finner d samme tallet endrer vi tallet som er brukt
-            //slik at vi kan fa tallet som ikke er brukt. feks om vi har 5,1,0,5 vil vi fa
-            // indeks 0 i forste omgang og indeks 4 i andre
-            if (b[i] == b[i - 1]) {
-                liste.set(liste.indexOf(b[i]), storsteTall);
-                kopi[i] = liste.indexOf(b[i]);
-
-            } else {
-                kopi[i] = liste.indexOf(b[i]);
-            }
+        int[] finn = new int[a.length];
+        for(int i = 0; i < a.length; i++){
+            kopi[i] = a[i];
+            finn[i] = a[i];
         }
-        return kopi;
+        //sorterer kopi. finn arrayet er fortsatt  == a
+        quickSort(kopi,0,a.length-1);
+
+        //sluttsvar i indekskopi
+        int[] indekskopi = new int[a.length];
+        //hver gang vi finner indeksen til det minste tallet endrer vi dette med storsteTall
+        int storsteTall = kopi[a.length - 1] + 1;
+        //sammenlikner den sorterte tabellen kopi sammen med finn for å finne indeksen
+        //endrer finn[j] slik at vi unngår problemet med dupliserte tall/indekser
+        for(int i =0; i < a.length; i++){
+            for(int j = 0; j<a.length; j++){
+                if(kopi[i] == finn[j]){
+                    indekskopi[i] = j;
+                    finn[j] = storsteTall;
+                    break;
+                }
+            }
+
+        }
+        //returnerer indekssorteringsarayet
+        return indekskopi;
     }
 
 
