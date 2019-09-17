@@ -200,7 +200,7 @@ public class Oblig1Test {
 
         if (!Arrays.equals(a, b)) {
             System.out.println
-                    ("Oppgave 4: c) Metoden gjør feil for en tabell en verdi!");
+                    ("Oppgave 4: c) Metoden gjor feil for en tabell en verdi!");
             antallFeil++;
         }
 
