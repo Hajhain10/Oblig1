@@ -210,22 +210,31 @@ public class Oblig1 {
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
         //throw new NotImplementedException();
-        //hjelpevariablen for a telle antall ulike
+        //hjelpevariablen er for a telle antall ulike
         int unike = 0;
-
-
         for(int i= 0; i < a.length; i++){
+
+            //deklarerer en variabel vi kan bruke utenfor
+            //loopen samtidig blir det satt lik 0 når vi skal sjekke et nytt tall
             int pluss = 0;
+
+            //sammenligner tallene i loopen
             for(int j = 0; j < a.length; j++) {
+
                 pluss = j;
+
+                //hvis a[i] == a[j] er lik hverandre går den ut av den andre loopen
                 if (a[i] == a[j]) {
                     break;
                 }
             }
+
+            //hvis i og pluss (j) er like vet vi at det er et unikt tall
             if(i == pluss){
                 unike++;
             }
         }
+        //returner unike
         return unike;
     }
 
