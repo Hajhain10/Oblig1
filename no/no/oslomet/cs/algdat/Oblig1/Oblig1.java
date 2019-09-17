@@ -309,12 +309,28 @@ public class Oblig1 {
         if(a.length == 0){
             return;
         }
-        //dersom k er storre enn lenden til a vil den reduseres
-        int rotasjoner = k%a.length;
-        if(rotasjoner<0){
-            rotasjoner = k+ a.length;
+        k = k%a.length;
+        if(k<0){
+            k = k+ a.length;
+        }
+        char[] kopi = new char[k];
+        int j = a.length-k;
+        for (int i = 0; i < k; i++) {
+            kopi[i] = a[j];
+            j++;
+        }
+        char temp;
+        for (int i = a.length - 1; i > 0; i--) {
+            if (i - k >= 0) {
+                temp = a[i];
+                a[i] = a[i - k];
+                a[i - k] = temp;
+            }
         }
 
+        for(int i = 0; i < k; i++){
+            a[i] = kopi[i];
+        }
     }
 
     ///// Oppgave 7 //////////////////////////////////////
