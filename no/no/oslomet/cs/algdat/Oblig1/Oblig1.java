@@ -333,7 +333,7 @@ public class Oblig1 {
         }
     }
 
-    ///// Oppgave 7 ///////////////////////////////////////
+    ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
         //throw new NotImplementedException();
