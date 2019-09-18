@@ -116,23 +116,18 @@ public class Oblig1 {
         }
 
     }
-    //samme byttmetode som i hjelpemetoder i oblig1test
-    //denne tar inn char istedenfor int
-    private static void bytt(char[] a, int v, int h) {
-        while (v < h) {
-            char temp = a[v];
-            a[v] = a[h];
-            a[h] = temp;
-            h--;
-            v++;
-        }
-    }
 
 
     private Oblig1() {
     }
 
     ///// Oppgave 1 //////////////////////////////////////
+
+    /**
+     * Svar på deloppgaver
+     * I det beste tilfelle må arrayet være sorrtert synkende, feks {9,8,7,6,5,4,3,2,1}
+     * I det verste tilfelle må arrayet være sortert stigende, feks {1,2,3,4,5,6,7,8,9}
+     */
     public static int maks(int[] a) {
        // throw new NotImplementedException();
         if(a.length <= 0){
@@ -156,6 +151,14 @@ public class Oblig1 {
     public static int ombyttinger(int[] a) {
         //throw new NotImplementedException();
         //dersom vi ikke far inn noe kastes en exception
+        /**
+         * i Oblig1unitTest har vi lagt inn en random persmutasjon
+         * vi prøvde med n = 10 og fikk en gjennomsnit på ca 7/8
+         * De tidligere maks metodene og den i obligen bruker like mange grunnlegende og dominerende opreasjoner men
+         * vi har konkludert med at hvis vi kun skal sortere et tall i listen så vil de gamle
+         * maks metodene være like bra som denne. forskjellen er at bobblesort alltid vil gjøre tabellen
+         * litt bedre hver gang. den vil være litt mer sortert. Dette vil ikke våre gamle maks metoder gjøre.
+         */
         if(a.length <= 0){
             throw new NoSuchElementException("Arrayet kan ikke inneholde 0 tall");
         }
