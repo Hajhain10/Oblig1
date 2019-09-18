@@ -33,3 +33,21 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 Vi har valgt å gå sammen med en annen gruppe
 Til slutt har vi valgt å gå for vår løsning. 
 Deres kode ligger i zip filen med deres navn.
+
+# DEN ANDRE GRUPPEN SIN READ.me:
+# Obligatorisk oppgave 1 i Algoritmer og Datastrukturer
+
+Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
+Oppgaven er levert av følgende studenter:
+* Jawid Mohammadi, S315591, s315591@oslomet.no
+* Rahmat Faribarz, s235799, s235799@oslomet.no
+
+# Arbeidsfordeling
+
+I oppgaven har vi hatt følgende arbeidsfordeling:
+* Jawid har hatt hovedansvar for oppgave 1, 2, 4 og 7. 
+* Rahmat har hatt hovedansvar for oppgave 3, 5, og 6. 
+* Vi har i fellesskap løst oppgave 8, 9, 10. 
+
+* Vi var to grupper først som ble enige om å levere sammen til slutt. Grunnen for å levere sammen to forskjellige prosjekter inn i hverandre er å finne lettere ut at alle i gruppen har jobbet med oppgavene siden vi spurte læreren om det.  
+
