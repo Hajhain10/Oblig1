@@ -83,36 +83,36 @@ public class Oblig1 {
         int midt = (venstre + hoyre) / 2;
         int pivot = array[midt];
 
-        int lav = venstre;
-        int hoy = hoyre;
+        int v = venstre;
+        int h = hoyre;
 
-        while (lav <= hoy) {
+        while (v <= h) {
 
-            while (array[lav] < pivot) {
+            while (array[v] < pivot) {
 
-                lav++;
+                v++;
             }
 
-            while (array[hoy] > pivot) {
+            while (array[h] > pivot) {
 
-                hoy--;
+                h--;
             }
 
-            if (lav <= hoy) {
+            if (v <= h) {
 
-                char midlertidig = array[lav];
-                array[lav] = array[hoy];
-                array[hoy] = midlertidig;
-                lav++;
-                hoy--;
+                char midlertidig = array[v];
+                array[v] = array[h];
+                array[h] = midlertidig;
+                v++;
+                h--;
             }
         }
 
-        if (venstre < hoy) {
-            quickSort(array, venstre, hoy);
+        if (venstre < h) {
+            quickSort(array, venstre, h);
         }
-        if (hoyre > lav) {
-            quickSort(array, lav, hoyre);
+        if (hoyre > v) {
+            quickSort(array, v, hoyre);
         }
 
     }
@@ -125,8 +125,8 @@ public class Oblig1 {
 
     /**
      * Svar på deloppgaver
-     * I det beste tilfelle må arrayet være sorrtert synkende, feks {9,8,7,6,5,4,3,2,1}
-     * I det verste tilfelle må arrayet være sortert stigende, feks {1,2,3,4,5,6,7,8,9}
+     * I det beste tilfelle ma arrayet være sorrtert stigende, feks {1,2,3,4,5,6,7,8,9}
+     * I det vaerste tilfelle ma arrayet være sortert synkende, feks {9,8,7,6,5,4,3,2,1}
      */
     public static int maks(int[] a) {
        // throw new NotImplementedException();
@@ -153,11 +153,11 @@ public class Oblig1 {
         //dersom vi ikke far inn noe kastes en exception
         /**
          * i Oblig1unitTest har vi lagt inn en random persmutasjon
-         * vi prøvde med n = 10 og fikk en gjennomsnit på ca 7/8
+         * vi provde med n = 10 og fikk en gjennomsnitt på ca 6/7
          * De tidligere maks metodene og den i obligen bruker like mange grunnlegende og dominerende opreasjoner men
-         * vi har konkludert med at hvis vi kun skal sortere et tall i listen så vil de gamle
-         * maks metodene være like bra som denne. forskjellen er at bobblesort alltid vil gjøre tabellen
-         * litt bedre hver gang. den vil være litt mer sortert. Dette vil ikke våre gamle maks metoder gjøre.
+         * vi har konkludert med at hvis vi kun skal sortere et tall i listen sa vil de gamle
+         * maks metodene vaere like bra som denne. forskjellen er at bobblesort alltid vil gjøre tabellen
+         * litt bedre hver gang. Den vil vaere litt mer sortert. Dette vil ikke vaere gamle maks metoder gjore.
          */
         if(a.length <= 0){
             throw new NoSuchElementException("Arrayet kan ikke inneholde 0 tall");
