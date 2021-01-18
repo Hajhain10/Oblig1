@@ -23,6 +23,7 @@ import java.util.*;
 /**
  * Alle tester i denne klassen skal passere når du leverer inn.
  * Du skal ikke endre noe som helst i denne filen
+ * ok
  */
 public class Oblig1Test {
 
